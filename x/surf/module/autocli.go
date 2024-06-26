@@ -17,6 +17,28 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod: "WorldIdtoUserAll",
+					Use:       "list-world-id-to-user",
+					Short:     "List all worldIDToUser",
+				},
+				{
+					RpcMethod:      "WorldIdtoUser",
+					Use:            "show-world-id-to-user [id]",
+					Short:          "Shows a worldIDToUser",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
+				},
+				{
+					RpcMethod: "UserToWorldIdAll",
+					Use:       "list-user-to-world-id",
+					Short:     "List all userToWorldID",
+				},
+				{
+					RpcMethod:      "UserToWorldId",
+					Use:            "show-user-to-world-id [id]",
+					Short:          "Shows a userToWorldID",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

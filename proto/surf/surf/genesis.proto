@@ -5,6 +5,8 @@ package surf.surf;
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "surf/surf/params.proto";
+import "surf/surf/world_id_to_user.proto";
+import "surf/surf/user_to_world_id.proto";
 
 option go_package = "surf/x/surf/types";
 
@@ -12,7 +14,9 @@ option go_package = "surf/x/surf/types";
 message GenesisState {
   
   // params defines all the parameters of the module.
-  Params params  = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  string port_id = 2;
+           Params        params            = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+           string        port_id           = 2;
+  repeated WorldIdtoUser worldIdtoUserList = 3 [(gogoproto.nullable) = false] ;
+  repeated UserToWorldId userToWorldIdList = 4 [(gogoproto.nullable) = false] ;
 }
 

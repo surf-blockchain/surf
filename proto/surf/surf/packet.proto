@@ -1,0 +1,13 @@
+syntax = "proto3";
+package surf.surf;
+
+option go_package = "surf/x/surf/types";
+
+message SurfPacketData {
+    oneof packet {
+        NoData noData = 1;
+    }
+}
+
+message NoData {
+}

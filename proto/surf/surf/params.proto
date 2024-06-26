@@ -1,0 +1,15 @@
+syntax = "proto3";
+package surf.surf;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "surf/x/surf/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "surf/x/surf/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

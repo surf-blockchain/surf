@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package surf.surf;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "surf/surf/params.proto";
+
+option go_package = "surf/x/surf/types";
+
+// GenesisState defines the surf module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+  Params params  = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  string port_id = 2;
+}
+

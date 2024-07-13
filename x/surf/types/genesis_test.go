@@ -23,9 +23,53 @@ func TestGenesisState_Validate(t *testing.T) {
 			desc: "valid genesis state",
 			genState: &types.GenesisState{
 				PortId: types.PortID,
+				AccountToUserList: []types.AccountToUser{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
+				WorldIdToUserList: []types.WorldIdToUser{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated accountToUser",
+			genState: &types.GenesisState{
+				AccountToUserList: []types.AccountToUser{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated worldIdToUser",
+			genState: &types.GenesisState{
+				WorldIdToUserList: []types.WorldIdToUser{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	}

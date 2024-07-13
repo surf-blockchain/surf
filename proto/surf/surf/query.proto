@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package surf.surf;
 
 import "amino/amino.proto";
@@ -6,25 +7,81 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "surf/surf/params.proto";
+import "surf/surf/account_to_user.proto";
+import "surf/surf/world_id_to_user.proto";
 
 option go_package = "surf/x/surf/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/surf/surf/params";
+  
+  }
+  
+  // Queries a list of AccountToUser items.
+  rpc AccountToUser    (QueryGetAccountToUserRequest) returns (QueryGetAccountToUserResponse) {
+    option (google.api.http).get = "/surf/surf/account_to_user/{index}";
+  
+  }
+  rpc AccountToUserAll (QueryAllAccountToUserRequest) returns (QueryAllAccountToUserResponse) {
+    option (google.api.http).get = "/surf/surf/account_to_user";
+  
+  }
+  
+  // Queries a list of WorldIdToUser items.
+  rpc WorldIdToUser    (QueryGetWorldIdToUserRequest) returns (QueryGetWorldIdToUserResponse) {
+    option (google.api.http).get = "/surf/surf/world_id_to_user/{index}";
+  
+  }
+  rpc WorldIdToUserAll (QueryAllWorldIdToUserRequest) returns (QueryAllWorldIdToUserResponse) {
+    option (google.api.http).get = "/surf/surf/world_id_to_user";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
+
+message QueryGetAccountToUserRequest {
+  string index = 1;
+}
+
+message QueryGetAccountToUserResponse {
+  AccountToUser accountToUser = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAccountToUserRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAccountToUserResponse {
+  repeated AccountToUser                          accountToUser = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination    = 2;
+}
+
+message QueryGetWorldIdToUserRequest {
+  string index = 1;
+}
+
+message QueryGetWorldIdToUserResponse {
+  WorldIdToUser worldIdToUser = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllWorldIdToUserRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllWorldIdToUserResponse {
+  repeated WorldIdToUser                          worldIdToUser = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination    = 2;
+}
+

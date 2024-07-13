@@ -1,0 +1,12 @@
+syntax = "proto3";
+package surf.surf;
+
+option go_package = "surf/x/surf/types";
+
+message WorldIdToUser {
+  string index = 1; 
+  string worldId = 2; 
+  string account = 3; 
+  
+}
+

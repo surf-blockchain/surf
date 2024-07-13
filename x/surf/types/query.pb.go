@@ -10,7 +10,7 @@ import (
 	math "math"
 	math_bits "math/bits"
 
-	_ "github.com/cosmos/cosmos-sdk/types/query"
+	query "github.com/cosmos/cosmos-sdk/types/query"
 	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
@@ -115,34 +115,430 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
+type QueryGetAccountToUserRequest struct {
+	Index string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+}
+
+func (m *QueryGetAccountToUserRequest) Reset()         { *m = QueryGetAccountToUserRequest{} }
+func (m *QueryGetAccountToUserRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAccountToUserRequest) ProtoMessage()    {}
+func (*QueryGetAccountToUserRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{2}
+}
+func (m *QueryGetAccountToUserRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAccountToUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAccountToUserRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAccountToUserRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAccountToUserRequest.Merge(m, src)
+}
+func (m *QueryGetAccountToUserRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAccountToUserRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAccountToUserRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAccountToUserRequest proto.InternalMessageInfo
+
+func (m *QueryGetAccountToUserRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+type QueryGetAccountToUserResponse struct {
+	AccountToUser AccountToUser `protobuf:"bytes,1,opt,name=accountToUser,proto3" json:"accountToUser"`
+}
+
+func (m *QueryGetAccountToUserResponse) Reset()         { *m = QueryGetAccountToUserResponse{} }
+func (m *QueryGetAccountToUserResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetAccountToUserResponse) ProtoMessage()    {}
+func (*QueryGetAccountToUserResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{3}
+}
+func (m *QueryGetAccountToUserResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetAccountToUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetAccountToUserResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetAccountToUserResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetAccountToUserResponse.Merge(m, src)
+}
+func (m *QueryGetAccountToUserResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetAccountToUserResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetAccountToUserResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetAccountToUserResponse proto.InternalMessageInfo
+
+func (m *QueryGetAccountToUserResponse) GetAccountToUser() AccountToUser {
+	if m != nil {
+		return m.AccountToUser
+	}
+	return AccountToUser{}
+}
+
+type QueryAllAccountToUserRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllAccountToUserRequest) Reset()         { *m = QueryAllAccountToUserRequest{} }
+func (m *QueryAllAccountToUserRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllAccountToUserRequest) ProtoMessage()    {}
+func (*QueryAllAccountToUserRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{4}
+}
+func (m *QueryAllAccountToUserRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllAccountToUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllAccountToUserRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllAccountToUserRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllAccountToUserRequest.Merge(m, src)
+}
+func (m *QueryAllAccountToUserRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllAccountToUserRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllAccountToUserRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllAccountToUserRequest proto.InternalMessageInfo
+
+func (m *QueryAllAccountToUserRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllAccountToUserResponse struct {
+	AccountToUser []AccountToUser     `protobuf:"bytes,1,rep,name=accountToUser,proto3" json:"accountToUser"`
+	Pagination    *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllAccountToUserResponse) Reset()         { *m = QueryAllAccountToUserResponse{} }
+func (m *QueryAllAccountToUserResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllAccountToUserResponse) ProtoMessage()    {}
+func (*QueryAllAccountToUserResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{5}
+}
+func (m *QueryAllAccountToUserResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllAccountToUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllAccountToUserResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllAccountToUserResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllAccountToUserResponse.Merge(m, src)
+}
+func (m *QueryAllAccountToUserResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllAccountToUserResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllAccountToUserResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllAccountToUserResponse proto.InternalMessageInfo
+
+func (m *QueryAllAccountToUserResponse) GetAccountToUser() []AccountToUser {
+	if m != nil {
+		return m.AccountToUser
+	}
+	return nil
+}
+
+func (m *QueryAllAccountToUserResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetWorldIdToUserRequest struct {
+	Index string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+}
+
+func (m *QueryGetWorldIdToUserRequest) Reset()         { *m = QueryGetWorldIdToUserRequest{} }
+func (m *QueryGetWorldIdToUserRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetWorldIdToUserRequest) ProtoMessage()    {}
+func (*QueryGetWorldIdToUserRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{6}
+}
+func (m *QueryGetWorldIdToUserRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetWorldIdToUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetWorldIdToUserRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetWorldIdToUserRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetWorldIdToUserRequest.Merge(m, src)
+}
+func (m *QueryGetWorldIdToUserRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetWorldIdToUserRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetWorldIdToUserRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetWorldIdToUserRequest proto.InternalMessageInfo
+
+func (m *QueryGetWorldIdToUserRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+type QueryGetWorldIdToUserResponse struct {
+	WorldIdToUser WorldIdToUser `protobuf:"bytes,1,opt,name=worldIdToUser,proto3" json:"worldIdToUser"`
+}
+
+func (m *QueryGetWorldIdToUserResponse) Reset()         { *m = QueryGetWorldIdToUserResponse{} }
+func (m *QueryGetWorldIdToUserResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetWorldIdToUserResponse) ProtoMessage()    {}
+func (*QueryGetWorldIdToUserResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{7}
+}
+func (m *QueryGetWorldIdToUserResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetWorldIdToUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetWorldIdToUserResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetWorldIdToUserResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetWorldIdToUserResponse.Merge(m, src)
+}
+func (m *QueryGetWorldIdToUserResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetWorldIdToUserResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetWorldIdToUserResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetWorldIdToUserResponse proto.InternalMessageInfo
+
+func (m *QueryGetWorldIdToUserResponse) GetWorldIdToUser() WorldIdToUser {
+	if m != nil {
+		return m.WorldIdToUser
+	}
+	return WorldIdToUser{}
+}
+
+type QueryAllWorldIdToUserRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllWorldIdToUserRequest) Reset()         { *m = QueryAllWorldIdToUserRequest{} }
+func (m *QueryAllWorldIdToUserRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllWorldIdToUserRequest) ProtoMessage()    {}
+func (*QueryAllWorldIdToUserRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{8}
+}
+func (m *QueryAllWorldIdToUserRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllWorldIdToUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllWorldIdToUserRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllWorldIdToUserRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllWorldIdToUserRequest.Merge(m, src)
+}
+func (m *QueryAllWorldIdToUserRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllWorldIdToUserRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllWorldIdToUserRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllWorldIdToUserRequest proto.InternalMessageInfo
+
+func (m *QueryAllWorldIdToUserRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllWorldIdToUserResponse struct {
+	WorldIdToUser []WorldIdToUser     `protobuf:"bytes,1,rep,name=worldIdToUser,proto3" json:"worldIdToUser"`
+	Pagination    *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllWorldIdToUserResponse) Reset()         { *m = QueryAllWorldIdToUserResponse{} }
+func (m *QueryAllWorldIdToUserResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllWorldIdToUserResponse) ProtoMessage()    {}
+func (*QueryAllWorldIdToUserResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c298b0a24682c425, []int{9}
+}
+func (m *QueryAllWorldIdToUserResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllWorldIdToUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllWorldIdToUserResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllWorldIdToUserResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllWorldIdToUserResponse.Merge(m, src)
+}
+func (m *QueryAllWorldIdToUserResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllWorldIdToUserResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllWorldIdToUserResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllWorldIdToUserResponse proto.InternalMessageInfo
+
+func (m *QueryAllWorldIdToUserResponse) GetWorldIdToUser() []WorldIdToUser {
+	if m != nil {
+		return m.WorldIdToUser
+	}
+	return nil
+}
+
+func (m *QueryAllWorldIdToUserResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "surf.surf.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "surf.surf.QueryParamsResponse")
+	proto.RegisterType((*QueryGetAccountToUserRequest)(nil), "surf.surf.QueryGetAccountToUserRequest")
+	proto.RegisterType((*QueryGetAccountToUserResponse)(nil), "surf.surf.QueryGetAccountToUserResponse")
+	proto.RegisterType((*QueryAllAccountToUserRequest)(nil), "surf.surf.QueryAllAccountToUserRequest")
+	proto.RegisterType((*QueryAllAccountToUserResponse)(nil), "surf.surf.QueryAllAccountToUserResponse")
+	proto.RegisterType((*QueryGetWorldIdToUserRequest)(nil), "surf.surf.QueryGetWorldIdToUserRequest")
+	proto.RegisterType((*QueryGetWorldIdToUserResponse)(nil), "surf.surf.QueryGetWorldIdToUserResponse")
+	proto.RegisterType((*QueryAllWorldIdToUserRequest)(nil), "surf.surf.QueryAllWorldIdToUserRequest")
+	proto.RegisterType((*QueryAllWorldIdToUserResponse)(nil), "surf.surf.QueryAllWorldIdToUserResponse")
 }
 
 func init() { proto.RegisterFile("surf/surf/query.proto", fileDescriptor_c298b0a24682c425) }
 
 var fileDescriptor_c298b0a24682c425 = []byte{
-	// 289 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2d, 0x2e, 0x2d, 0x4a,
-	0xd3, 0x07, 0x13, 0x85, 0xa5, 0xa9, 0x45, 0x95, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0x9c,
-	0x20, 0x11, 0x3d, 0x10, 0x21, 0x25, 0x98, 0x98, 0x9b, 0x99, 0x97, 0xaf, 0x0f, 0x26, 0x21, 0xb2,
-	0x52, 0x22, 0xe9, 0xf9, 0xe9, 0xf9, 0x60, 0xa6, 0x3e, 0x88, 0x05, 0x15, 0x95, 0x49, 0xcf, 0xcf,
-	0x4f, 0xcf, 0x49, 0xd5, 0x4f, 0x2c, 0xc8, 0xd4, 0x4f, 0xcc, 0xcb, 0xcb, 0x2f, 0x49, 0x2c, 0xc9,
-	0xcc, 0xcf, 0x2b, 0x86, 0xca, 0x6a, 0x25, 0xe7, 0x17, 0xe7, 0xe6, 0x17, 0xeb, 0x27, 0x25, 0x16,
-	0xa7, 0x42, 0xac, 0xd2, 0x2f, 0x33, 0x4c, 0x4a, 0x2d, 0x49, 0x34, 0xd4, 0x2f, 0x48, 0x4c, 0xcf,
-	0xcc, 0x03, 0x2b, 0x86, 0xaa, 0x15, 0x43, 0x38, 0xaa, 0x20, 0xb1, 0x28, 0x31, 0x17, 0x6a, 0x86,
-	0x92, 0x08, 0x97, 0x50, 0x20, 0x48, 0x67, 0x00, 0x58, 0x30, 0x28, 0xb5, 0xb0, 0x34, 0xb5, 0xb8,
-	0x44, 0xc9, 0x9b, 0x4b, 0x18, 0x45, 0xb4, 0xb8, 0x20, 0x3f, 0xaf, 0x38, 0x55, 0xc8, 0x84, 0x8b,
-	0x0d, 0xa2, 0x59, 0x82, 0x51, 0x81, 0x51, 0x83, 0xdb, 0x48, 0x50, 0x0f, 0xee, 0x27, 0x3d, 0x88,
-	0x52, 0x27, 0xce, 0x13, 0xf7, 0xe4, 0x19, 0x56, 0x3c, 0xdf, 0xa0, 0xc5, 0x18, 0x04, 0x55, 0x6b,
-	0x94, 0xcd, 0xc5, 0x0a, 0x36, 0x4c, 0x28, 0x89, 0x8b, 0x0d, 0xa2, 0x4a, 0x48, 0x16, 0x49, 0x23,
-	0xa6, 0xf5, 0x52, 0x72, 0xb8, 0xa4, 0x21, 0xee, 0x50, 0x92, 0x6c, 0xba, 0xfc, 0x64, 0x32, 0x93,
-	0xb0, 0x90, 0xa0, 0x3e, 0xba, 0xaf, 0x9c, 0xb4, 0x4f, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48, 0x8e,
-	0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1, 0x58,
-	0x8e, 0x21, 0x4a, 0x10, 0xac, 0xac, 0x02, 0xa2, 0xba, 0xa4, 0xb2, 0x20, 0xb5, 0x38, 0x89, 0x0d,
-	0x1c, 0x06, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x23, 0x02, 0xc5, 0x55, 0xb2, 0x01, 0x00,
-	0x00,
+	// 613 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x95, 0x4f, 0x6b, 0x13, 0x4f,
+	0x18, 0xc7, 0xb3, 0xed, 0x2f, 0x81, 0xcc, 0x8f, 0x40, 0x33, 0x8d, 0x52, 0x63, 0xb2, 0x2d, 0x53,
+	0xb5, 0x25, 0x85, 0x1d, 0x5a, 0xfb, 0x06, 0x12, 0xc4, 0x22, 0x5e, 0x6a, 0x50, 0x04, 0x2f, 0x61,
+	0x92, 0x4c, 0x97, 0x85, 0xcd, 0xce, 0x76, 0x67, 0x63, 0x5b, 0xc4, 0x8b, 0x37, 0x3d, 0xa8, 0xe0,
+	0x8b, 0xd0, 0x93, 0xf8, 0x32, 0x7a, 0x2c, 0x78, 0xf1, 0x24, 0x92, 0x08, 0xbe, 0x0d, 0xd9, 0x99,
+	0x69, 0xb3, 0x93, 0xec, 0xd8, 0x06, 0xf4, 0x32, 0x6c, 0x66, 0x9e, 0x3f, 0x9f, 0x67, 0xbe, 0xcf,
+	0x33, 0x01, 0xd7, 0xf8, 0x30, 0x3a, 0xc0, 0x62, 0x39, 0x1c, 0xd2, 0xe8, 0xc4, 0x09, 0x23, 0x16,
+	0x33, 0x58, 0x4c, 0x76, 0x9c, 0x64, 0xa9, 0x96, 0xc9, 0xc0, 0x0b, 0x18, 0x16, 0xab, 0x3c, 0xad,
+	0x56, 0x5c, 0xe6, 0x32, 0xf1, 0x89, 0x93, 0x2f, 0xb5, 0x5b, 0x73, 0x19, 0x73, 0x7d, 0x8a, 0x49,
+	0xe8, 0x61, 0x12, 0x04, 0x2c, 0x26, 0xb1, 0xc7, 0x02, 0xae, 0x4e, 0x1b, 0x3d, 0xc6, 0x07, 0x8c,
+	0xe3, 0x2e, 0xe1, 0x54, 0xa6, 0xc2, 0xcf, 0xb7, 0xbb, 0x34, 0x26, 0xdb, 0x38, 0x24, 0xae, 0x17,
+	0x08, 0x63, 0x65, 0x7b, 0x7d, 0x02, 0x15, 0x92, 0x88, 0x0c, 0xce, 0x63, 0xac, 0x4e, 0xf6, 0x49,
+	0xaf, 0xc7, 0x86, 0x41, 0xdc, 0x89, 0x59, 0x67, 0xc8, 0x69, 0xa4, 0x0c, 0xd6, 0x26, 0x06, 0x47,
+	0x2c, 0xf2, 0xfb, 0x1d, 0xaf, 0xaf, 0x5b, 0xa0, 0x0a, 0x80, 0x8f, 0x92, 0xe4, 0xfb, 0x22, 0x6e,
+	0x9b, 0x1e, 0x0e, 0x29, 0x8f, 0xd1, 0x43, 0xb0, 0xac, 0xed, 0xf2, 0x90, 0x05, 0x9c, 0xc2, 0x5d,
+	0x50, 0x90, 0xf9, 0x57, 0xac, 0x35, 0x6b, 0xf3, 0xff, 0x9d, 0xb2, 0x73, 0x71, 0x2d, 0x8e, 0x34,
+	0x6d, 0x15, 0x4f, 0xbf, 0xaf, 0xe6, 0x3e, 0xfd, 0xfa, 0xd2, 0xb0, 0xda, 0xca, 0x16, 0xed, 0x82,
+	0x9a, 0x08, 0xb6, 0x47, 0xe3, 0xa6, 0xa4, 0x7c, 0xcc, 0x9e, 0x70, 0x1a, 0xa9, 0x64, 0xb0, 0x02,
+	0xf2, 0x5e, 0xd0, 0xa7, 0xc7, 0x22, 0x68, 0xb1, 0x2d, 0x7f, 0x20, 0x0a, 0xea, 0x06, 0x2f, 0x05,
+	0x73, 0x0f, 0x94, 0x48, 0xfa, 0x40, 0x31, 0xad, 0xa4, 0x98, 0x34, 0xc7, 0xd6, 0x7f, 0x09, 0x5a,
+	0x5b, 0x77, 0x42, 0x07, 0x0a, 0xae, 0xe9, 0xfb, 0x99, 0x70, 0xf7, 0x01, 0x98, 0xc8, 0xa1, 0x52,
+	0xdc, 0x71, 0xa4, 0x76, 0x4e, 0xa2, 0x9d, 0x23, 0xdb, 0x44, 0x69, 0xe7, 0xec, 0x13, 0x97, 0x2a,
+	0xdf, 0x76, 0xca, 0x13, 0x7d, 0xb6, 0x54, 0x3d, 0xb3, 0x89, 0xcc, 0xf5, 0x2c, 0xce, 0x5d, 0x0f,
+	0xdc, 0xd3, 0x78, 0x17, 0x04, 0xef, 0xc6, 0xa5, 0xbc, 0x12, 0x41, 0x03, 0x4e, 0xa9, 0xf6, 0x34,
+	0x69, 0x9d, 0x07, 0xfd, 0x39, 0x55, 0x9b, 0xf2, 0x9a, 0x54, 0x79, 0x94, 0x3e, 0xc8, 0x50, 0x4d,
+	0x73, 0x3c, 0xaf, 0x52, 0x73, 0x4a, 0xab, 0x96, 0x09, 0xf7, 0x2f, 0x54, 0xbb, 0x72, 0x3d, 0x8b,
+	0x73, 0xd7, 0xf3, 0xd7, 0x54, 0xdb, 0xf9, 0x98, 0x07, 0x79, 0x01, 0x0c, 0xbb, 0xa0, 0x20, 0x47,
+	0x12, 0xd6, 0x53, 0x2c, 0xb3, 0xb3, 0x5e, 0xb5, 0x4d, 0xc7, 0x32, 0x3c, 0xba, 0xf1, 0xea, 0xeb,
+	0xcf, 0x0f, 0x0b, 0xcb, 0xb0, 0x8c, 0xa7, 0x5f, 0x21, 0xf8, 0xd6, 0x02, 0x25, 0xad, 0x27, 0xe1,
+	0xc6, 0x74, 0x30, 0xc3, 0xd0, 0x57, 0x37, 0x2f, 0x37, 0x54, 0xf9, 0x1b, 0x22, 0xff, 0x2d, 0x88,
+	0xb0, 0xf1, 0xb5, 0xc3, 0x2f, 0x44, 0xf7, 0xbd, 0x84, 0xaf, 0x2d, 0xb0, 0xa4, 0x45, 0x69, 0xfa,
+	0xfe, 0x2c, 0x93, 0x61, 0xd6, 0x67, 0x99, 0x4c, 0xb3, 0x8a, 0x90, 0x60, 0xaa, 0xc1, 0xaa, 0x99,
+	0x09, 0xbe, 0xb3, 0x40, 0x49, 0x93, 0x3e, 0xf3, 0x72, 0xb2, 0xda, 0x37, 0xf3, 0x72, 0x32, 0xdb,
+	0x0f, 0x6d, 0x09, 0x90, 0xdb, 0x70, 0x1d, 0x9b, 0x5f, 0xfa, 0x8b, 0xdb, 0x79, 0x63, 0x81, 0x25,
+	0x2d, 0x8c, 0xe9, 0x76, 0xae, 0x06, 0x65, 0x9a, 0x09, 0xb4, 0x2e, 0xa0, 0xea, 0xf0, 0xe6, 0x1f,
+	0xa0, 0x5a, 0x5b, 0xa7, 0x23, 0xdb, 0x3a, 0x1b, 0xd9, 0xd6, 0x8f, 0x91, 0x6d, 0xbd, 0x1f, 0xdb,
+	0xb9, 0xb3, 0xb1, 0x9d, 0xfb, 0x36, 0xb6, 0x73, 0xcf, 0xca, 0xc2, 0xe1, 0x58, 0xfa, 0xc5, 0x27,
+	0x21, 0xe5, 0xdd, 0x82, 0xf8, 0xb3, 0xba, 0xfb, 0x3b, 0x00, 0x00, 0xff, 0xff, 0x25, 0x84, 0x35,
+	0xf2, 0x9e, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -159,6 +555,12 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of AccountToUser items.
+	AccountToUser(ctx context.Context, in *QueryGetAccountToUserRequest, opts ...grpc.CallOption) (*QueryGetAccountToUserResponse, error)
+	AccountToUserAll(ctx context.Context, in *QueryAllAccountToUserRequest, opts ...grpc.CallOption) (*QueryAllAccountToUserResponse, error)
+	// Queries a list of WorldIdToUser items.
+	WorldIdToUser(ctx context.Context, in *QueryGetWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryGetWorldIdToUserResponse, error)
+	WorldIdToUserAll(ctx context.Context, in *QueryAllWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryAllWorldIdToUserResponse, error)
 }
 
 type queryClient struct {
@@ -178,10 +580,52 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) AccountToUser(ctx context.Context, in *QueryGetAccountToUserRequest, opts ...grpc.CallOption) (*QueryGetAccountToUserResponse, error) {
+	out := new(QueryGetAccountToUserResponse)
+	err := c.cc.Invoke(ctx, "/surf.surf.Query/AccountToUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AccountToUserAll(ctx context.Context, in *QueryAllAccountToUserRequest, opts ...grpc.CallOption) (*QueryAllAccountToUserResponse, error) {
+	out := new(QueryAllAccountToUserResponse)
+	err := c.cc.Invoke(ctx, "/surf.surf.Query/AccountToUserAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) WorldIdToUser(ctx context.Context, in *QueryGetWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryGetWorldIdToUserResponse, error) {
+	out := new(QueryGetWorldIdToUserResponse)
+	err := c.cc.Invoke(ctx, "/surf.surf.Query/WorldIdToUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) WorldIdToUserAll(ctx context.Context, in *QueryAllWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryAllWorldIdToUserResponse, error) {
+	out := new(QueryAllWorldIdToUserResponse)
+	err := c.cc.Invoke(ctx, "/surf.surf.Query/WorldIdToUserAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of AccountToUser items.
+	AccountToUser(context.Context, *QueryGetAccountToUserRequest) (*QueryGetAccountToUserResponse, error)
+	AccountToUserAll(context.Context, *QueryAllAccountToUserRequest) (*QueryAllAccountToUserResponse, error)
+	// Queries a list of WorldIdToUser items.
+	WorldIdToUser(context.Context, *QueryGetWorldIdToUserRequest) (*QueryGetWorldIdToUserResponse, error)
+	WorldIdToUserAll(context.Context, *QueryAllWorldIdToUserRequest) (*QueryAllWorldIdToUserResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -190,6 +634,18 @@ type UnimplementedQueryServer struct {
 
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (*UnimplementedQueryServer) AccountToUser(ctx context.Context, req *QueryGetAccountToUserRequest) (*QueryGetAccountToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AccountToUser not implemented")
+}
+func (*UnimplementedQueryServer) AccountToUserAll(ctx context.Context, req *QueryAllAccountToUserRequest) (*QueryAllAccountToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AccountToUserAll not implemented")
+}
+func (*UnimplementedQueryServer) WorldIdToUser(ctx context.Context, req *QueryGetWorldIdToUserRequest) (*QueryGetWorldIdToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WorldIdToUser not implemented")
+}
+func (*UnimplementedQueryServer) WorldIdToUserAll(ctx context.Context, req *QueryAllWorldIdToUserRequest) (*QueryAllWorldIdToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WorldIdToUserAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -214,6 +670,78 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_AccountToUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAccountToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AccountToUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/surf.surf.Query/AccountToUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AccountToUser(ctx, req.(*QueryGetAccountToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AccountToUserAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllAccountToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AccountToUserAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/surf.surf.Query/AccountToUserAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AccountToUserAll(ctx, req.(*QueryAllAccountToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_WorldIdToUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetWorldIdToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).WorldIdToUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/surf.surf.Query/WorldIdToUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).WorldIdToUser(ctx, req.(*QueryGetWorldIdToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_WorldIdToUserAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllWorldIdToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).WorldIdToUserAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/surf.surf.Query/WorldIdToUserAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).WorldIdToUserAll(ctx, req.(*QueryAllWorldIdToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "surf.surf.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -221,6 +749,22 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "AccountToUser",
+			Handler:    _Query_AccountToUser_Handler,
+		},
+		{
+			MethodName: "AccountToUserAll",
+			Handler:    _Query_AccountToUserAll_Handler,
+		},
+		{
+			MethodName: "WorldIdToUser",
+			Handler:    _Query_WorldIdToUser_Handler,
+		},
+		{
+			MethodName: "WorldIdToUserAll",
+			Handler:    _Query_WorldIdToUserAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -283,6 +827,300 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetAccountToUserRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAccountToUserRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAccountToUserRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetAccountToUserResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetAccountToUserResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetAccountToUserResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.AccountToUser.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllAccountToUserRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllAccountToUserRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllAccountToUserRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllAccountToUserResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllAccountToUserResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllAccountToUserResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.AccountToUser) > 0 {
+		for iNdEx := len(m.AccountToUser) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.AccountToUser[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetWorldIdToUserRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetWorldIdToUserRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetWorldIdToUserRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetWorldIdToUserResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetWorldIdToUserResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetWorldIdToUserResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.WorldIdToUser.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllWorldIdToUserRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllWorldIdToUserRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllWorldIdToUserRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllWorldIdToUserResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllWorldIdToUserResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllWorldIdToUserResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.WorldIdToUser) > 0 {
+		for iNdEx := len(m.WorldIdToUser) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.WorldIdToUser[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -311,6 +1149,118 @@ func (m *QueryParamsResponse) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetAccountToUserRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetAccountToUserResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.AccountToUser.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllAccountToUserRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllAccountToUserResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.AccountToUser) > 0 {
+		for _, e := range m.AccountToUser {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetWorldIdToUserRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetWorldIdToUserResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.WorldIdToUser.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllWorldIdToUserRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllWorldIdToUserResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.WorldIdToUser) > 0 {
+		for _, e := range m.WorldIdToUser {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
 	return n
 }
 
@@ -429,6 +1379,748 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := m.Params.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAccountToUserRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAccountToUserRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAccountToUserRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetAccountToUserResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetAccountToUserResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetAccountToUserResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AccountToUser", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.AccountToUser.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllAccountToUserRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllAccountToUserRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllAccountToUserRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllAccountToUserResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllAccountToUserResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllAccountToUserResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AccountToUser", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AccountToUser = append(m.AccountToUser, AccountToUser{})
+			if err := m.AccountToUser[len(m.AccountToUser)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetWorldIdToUserRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetWorldIdToUserRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetWorldIdToUserRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetWorldIdToUserResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetWorldIdToUserResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetWorldIdToUserResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WorldIdToUser", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.WorldIdToUser.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllWorldIdToUserRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllWorldIdToUserRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllWorldIdToUserRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllWorldIdToUserResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllWorldIdToUserResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllWorldIdToUserResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WorldIdToUser", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.WorldIdToUser = append(m.WorldIdToUser, WorldIdToUser{})
+			if err := m.WorldIdToUser[len(m.WorldIdToUser)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

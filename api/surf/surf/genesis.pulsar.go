@@ -15,10 +15,114 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
+var _ protoreflect.List = (*_GenesisState_3_list)(nil)
+
+type _GenesisState_3_list struct {
+	list *[]*AccountToUser
+}
+
+func (x *_GenesisState_3_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_GenesisState_3_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_GenesisState_3_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AccountToUser)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_GenesisState_3_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AccountToUser)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_GenesisState_3_list) AppendMutable() protoreflect.Value {
+	v := new(AccountToUser)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_3_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_GenesisState_3_list) NewElement() protoreflect.Value {
+	v := new(AccountToUser)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_3_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_GenesisState_4_list)(nil)
+
+type _GenesisState_4_list struct {
+	list *[]*WorldIdToUser
+}
+
+func (x *_GenesisState_4_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_GenesisState_4_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_GenesisState_4_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*WorldIdToUser)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_GenesisState_4_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*WorldIdToUser)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_GenesisState_4_list) AppendMutable() protoreflect.Value {
+	v := new(WorldIdToUser)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_4_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_GenesisState_4_list) NewElement() protoreflect.Value {
+	v := new(WorldIdToUser)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_4_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_GenesisState         protoreflect.MessageDescriptor
-	fd_GenesisState_params  protoreflect.FieldDescriptor
-	fd_GenesisState_port_id protoreflect.FieldDescriptor
+	md_GenesisState                   protoreflect.MessageDescriptor
+	fd_GenesisState_params            protoreflect.FieldDescriptor
+	fd_GenesisState_port_id           protoreflect.FieldDescriptor
+	fd_GenesisState_accountToUserList protoreflect.FieldDescriptor
+	fd_GenesisState_worldIdToUserList protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -26,6 +130,8 @@ func init() {
 	md_GenesisState = File_surf_surf_genesis_proto.Messages().ByName("GenesisState")
 	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
 	fd_GenesisState_port_id = md_GenesisState.Fields().ByName("port_id")
+	fd_GenesisState_accountToUserList = md_GenesisState.Fields().ByName("accountToUserList")
+	fd_GenesisState_worldIdToUserList = md_GenesisState.Fields().ByName("worldIdToUserList")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -105,6 +211,18 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
+	if len(x.AccountToUserList) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_3_list{list: &x.AccountToUserList})
+		if !f(fd_GenesisState_accountToUserList, value) {
+			return
+		}
+	}
+	if len(x.WorldIdToUserList) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_4_list{list: &x.WorldIdToUserList})
+		if !f(fd_GenesisState_worldIdToUserList, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -124,6 +242,10 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 		return x.Params != nil
 	case "surf.surf.GenesisState.port_id":
 		return x.PortId != ""
+	case "surf.surf.GenesisState.accountToUserList":
+		return len(x.AccountToUserList) != 0
+	case "surf.surf.GenesisState.worldIdToUserList":
+		return len(x.WorldIdToUserList) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: surf.surf.GenesisState"))
@@ -144,6 +266,10 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 		x.Params = nil
 	case "surf.surf.GenesisState.port_id":
 		x.PortId = ""
+	case "surf.surf.GenesisState.accountToUserList":
+		x.AccountToUserList = nil
+	case "surf.surf.GenesisState.worldIdToUserList":
+		x.WorldIdToUserList = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: surf.surf.GenesisState"))
@@ -166,6 +292,18 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 	case "surf.surf.GenesisState.port_id":
 		value := x.PortId
 		return protoreflect.ValueOfString(value)
+	case "surf.surf.GenesisState.accountToUserList":
+		if len(x.AccountToUserList) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_3_list{})
+		}
+		listValue := &_GenesisState_3_list{list: &x.AccountToUserList}
+		return protoreflect.ValueOfList(listValue)
+	case "surf.surf.GenesisState.worldIdToUserList":
+		if len(x.WorldIdToUserList) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_4_list{})
+		}
+		listValue := &_GenesisState_4_list{list: &x.WorldIdToUserList}
+		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: surf.surf.GenesisState"))
@@ -190,6 +328,14 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 		x.Params = value.Message().Interface().(*Params)
 	case "surf.surf.GenesisState.port_id":
 		x.PortId = value.Interface().(string)
+	case "surf.surf.GenesisState.accountToUserList":
+		lv := value.List()
+		clv := lv.(*_GenesisState_3_list)
+		x.AccountToUserList = *clv.list
+	case "surf.surf.GenesisState.worldIdToUserList":
+		lv := value.List()
+		clv := lv.(*_GenesisState_4_list)
+		x.WorldIdToUserList = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: surf.surf.GenesisState"))
@@ -215,6 +361,18 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
+	case "surf.surf.GenesisState.accountToUserList":
+		if x.AccountToUserList == nil {
+			x.AccountToUserList = []*AccountToUser{}
+		}
+		value := &_GenesisState_3_list{list: &x.AccountToUserList}
+		return protoreflect.ValueOfList(value)
+	case "surf.surf.GenesisState.worldIdToUserList":
+		if x.WorldIdToUserList == nil {
+			x.WorldIdToUserList = []*WorldIdToUser{}
+		}
+		value := &_GenesisState_4_list{list: &x.WorldIdToUserList}
+		return protoreflect.ValueOfList(value)
 	case "surf.surf.GenesisState.port_id":
 		panic(fmt.Errorf("field port_id of message surf.surf.GenesisState is not mutable"))
 	default:
@@ -235,6 +393,12 @@ func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) 
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	case "surf.surf.GenesisState.port_id":
 		return protoreflect.ValueOfString("")
+	case "surf.surf.GenesisState.accountToUserList":
+		list := []*AccountToUser{}
+		return protoreflect.ValueOfList(&_GenesisState_3_list{list: &list})
+	case "surf.surf.GenesisState.worldIdToUserList":
+		list := []*WorldIdToUser{}
+		return protoreflect.ValueOfList(&_GenesisState_4_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: surf.surf.GenesisState"))
@@ -312,6 +476,18 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if len(x.AccountToUserList) > 0 {
+			for _, e := range x.AccountToUserList {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if len(x.WorldIdToUserList) > 0 {
+			for _, e := range x.WorldIdToUserList {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -340,6 +516,38 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.WorldIdToUserList) > 0 {
+			for iNdEx := len(x.WorldIdToUserList) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.WorldIdToUserList[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x22
+			}
+		}
+		if len(x.AccountToUserList) > 0 {
+			for iNdEx := len(x.AccountToUserList) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.AccountToUserList[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x1a
+			}
 		}
 		if len(x.PortId) > 0 {
 			i -= len(x.PortId)
@@ -479,6 +687,74 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				}
 				x.PortId = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AccountToUserList", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AccountToUserList = append(x.AccountToUserList, &AccountToUser{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AccountToUserList[len(x.AccountToUserList)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field WorldIdToUserList", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.WorldIdToUserList = append(x.WorldIdToUserList, &WorldIdToUser{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.WorldIdToUserList[len(x.WorldIdToUserList)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -534,8 +810,10 @@ type GenesisState struct {
 	unknownFields protoimpl.UnknownFields
 
 	// params defines all the parameters of the module.
-	Params *Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-	PortId string  `protobuf:"bytes,2,opt,name=port_id,json=portId,proto3" json:"port_id,omitempty"`
+	Params            *Params          `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
+	PortId            string           `protobuf:"bytes,2,opt,name=port_id,json=portId,proto3" json:"port_id,omitempty"`
+	AccountToUserList []*AccountToUser `protobuf:"bytes,3,rep,name=accountToUserList,proto3" json:"accountToUserList,omitempty"`
+	WorldIdToUserList []*WorldIdToUser `protobuf:"bytes,4,rep,name=worldIdToUserList,proto3" json:"worldIdToUserList,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -572,6 +850,20 @@ func (x *GenesisState) GetPortId() string {
 	return ""
 }
 
+func (x *GenesisState) GetAccountToUserList() []*AccountToUser {
+	if x != nil {
+		return x.AccountToUserList
+	}
+	return nil
+}
+
+func (x *GenesisState) GetWorldIdToUserList() []*WorldIdToUser {
+	if x != nil {
+		return x.WorldIdToUserList
+	}
+	return nil
+}
+
 var File_surf_surf_genesis_proto protoreflect.FileDescriptor
 
 var file_surf_surf_genesis_proto_rawDesc = []byte{
@@ -581,13 +873,27 @@ var file_surf_surf_genesis_proto_rawDesc = []byte{
 	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x16, 0x73,
 	0x75, 0x72, 0x66, 0x2f, 0x73, 0x75, 0x72, 0x66, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x5d, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73,
-	0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x34, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x73, 0x75, 0x72, 0x66, 0x2e, 0x73, 0x75, 0x72,
-	0x66, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7,
-	0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x17, 0x0a, 0x07, 0x70,
-	0x6f, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x70, 0x6f,
-	0x72, 0x74, 0x49, 0x64, 0x42, 0x7e, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x75, 0x72, 0x66,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x73, 0x75, 0x72, 0x66, 0x2f, 0x73, 0x75, 0x72, 0x66,
+	0x2f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x74, 0x6f, 0x5f, 0x75, 0x73, 0x65, 0x72,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x73, 0x75, 0x72, 0x66, 0x2f, 0x73, 0x75, 0x72,
+	0x66, 0x2f, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x5f, 0x69, 0x64, 0x5f, 0x74, 0x6f, 0x5f, 0x75, 0x73,
+	0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xf9, 0x01, 0x0a, 0x0c, 0x47, 0x65, 0x6e,
+	0x65, 0x73, 0x69, 0x73, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x34, 0x0a, 0x06, 0x70, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x73, 0x75, 0x72, 0x66,
+	0x2e, 0x73, 0x75, 0x72, 0x66, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde,
+	0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
+	0x17, 0x0a, 0x07, 0x70, 0x6f, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x70, 0x6f, 0x72, 0x74, 0x49, 0x64, 0x12, 0x4c, 0x0a, 0x11, 0x61, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x03, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x73, 0x75, 0x72, 0x66, 0x2e, 0x73, 0x75, 0x72, 0x66, 0x2e,
+	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x42, 0x04, 0xc8,
+	0xde, 0x1f, 0x00, 0x52, 0x11, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x6f, 0x55, 0x73,
+	0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x4c, 0x0a, 0x11, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x49,
+	0x64, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x04, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x18, 0x2e, 0x73, 0x75, 0x72, 0x66, 0x2e, 0x73, 0x75, 0x72, 0x66, 0x2e, 0x57, 0x6f,
+	0x72, 0x6c, 0x64, 0x49, 0x64, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f,
+	0x00, 0x52, 0x11, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x49, 0x64, 0x54, 0x6f, 0x55, 0x73, 0x65, 0x72,
+	0x4c, 0x69, 0x73, 0x74, 0x42, 0x7e, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x75, 0x72, 0x66,
 	0x2e, 0x73, 0x75, 0x72, 0x66, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72,
 	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b,
 	0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x75, 0x72, 0x66, 0x2f, 0x73, 0x75, 0x72,
@@ -612,16 +918,20 @@ func file_surf_surf_genesis_proto_rawDescGZIP() []byte {
 
 var file_surf_surf_genesis_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_surf_surf_genesis_proto_goTypes = []interface{}{
-	(*GenesisState)(nil), // 0: surf.surf.GenesisState
-	(*Params)(nil),       // 1: surf.surf.Params
+	(*GenesisState)(nil),  // 0: surf.surf.GenesisState
+	(*Params)(nil),        // 1: surf.surf.Params
+	(*AccountToUser)(nil), // 2: surf.surf.AccountToUser
+	(*WorldIdToUser)(nil), // 3: surf.surf.WorldIdToUser
 }
 var file_surf_surf_genesis_proto_depIdxs = []int32{
 	1, // 0: surf.surf.GenesisState.params:type_name -> surf.surf.Params
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: surf.surf.GenesisState.accountToUserList:type_name -> surf.surf.AccountToUser
+	3, // 2: surf.surf.GenesisState.worldIdToUserList:type_name -> surf.surf.WorldIdToUser
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_surf_surf_genesis_proto_init() }
@@ -630,6 +940,8 @@ func file_surf_surf_genesis_proto_init() {
 		return
 	}
 	file_surf_surf_params_proto_init()
+	file_surf_surf_account_to_user_proto_init()
+	file_surf_surf_world_id_to_user_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_surf_surf_genesis_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenesisState); i {

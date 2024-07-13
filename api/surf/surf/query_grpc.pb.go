@@ -20,7 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName = "/surf.surf.Query/Params"
+	Query_Params_FullMethodName           = "/surf.surf.Query/Params"
+	Query_AccountToUser_FullMethodName    = "/surf.surf.Query/AccountToUser"
+	Query_AccountToUserAll_FullMethodName = "/surf.surf.Query/AccountToUserAll"
+	Query_WorldIdToUser_FullMethodName    = "/surf.surf.Query/WorldIdToUser"
+	Query_WorldIdToUserAll_FullMethodName = "/surf.surf.Query/WorldIdToUserAll"
 )
 
 // QueryClient is the client API for Query service.
@@ -29,6 +33,12 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of AccountToUser items.
+	AccountToUser(ctx context.Context, in *QueryGetAccountToUserRequest, opts ...grpc.CallOption) (*QueryGetAccountToUserResponse, error)
+	AccountToUserAll(ctx context.Context, in *QueryAllAccountToUserRequest, opts ...grpc.CallOption) (*QueryAllAccountToUserResponse, error)
+	// Queries a list of WorldIdToUser items.
+	WorldIdToUser(ctx context.Context, in *QueryGetWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryGetWorldIdToUserResponse, error)
+	WorldIdToUserAll(ctx context.Context, in *QueryAllWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryAllWorldIdToUserResponse, error)
 }
 
 type queryClient struct {
@@ -48,12 +58,54 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) AccountToUser(ctx context.Context, in *QueryGetAccountToUserRequest, opts ...grpc.CallOption) (*QueryGetAccountToUserResponse, error) {
+	out := new(QueryGetAccountToUserResponse)
+	err := c.cc.Invoke(ctx, Query_AccountToUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) AccountToUserAll(ctx context.Context, in *QueryAllAccountToUserRequest, opts ...grpc.CallOption) (*QueryAllAccountToUserResponse, error) {
+	out := new(QueryAllAccountToUserResponse)
+	err := c.cc.Invoke(ctx, Query_AccountToUserAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) WorldIdToUser(ctx context.Context, in *QueryGetWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryGetWorldIdToUserResponse, error) {
+	out := new(QueryGetWorldIdToUserResponse)
+	err := c.cc.Invoke(ctx, Query_WorldIdToUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) WorldIdToUserAll(ctx context.Context, in *QueryAllWorldIdToUserRequest, opts ...grpc.CallOption) (*QueryAllWorldIdToUserResponse, error) {
+	out := new(QueryAllWorldIdToUserResponse)
+	err := c.cc.Invoke(ctx, Query_WorldIdToUserAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of AccountToUser items.
+	AccountToUser(context.Context, *QueryGetAccountToUserRequest) (*QueryGetAccountToUserResponse, error)
+	AccountToUserAll(context.Context, *QueryAllAccountToUserRequest) (*QueryAllAccountToUserResponse, error)
+	// Queries a list of WorldIdToUser items.
+	WorldIdToUser(context.Context, *QueryGetWorldIdToUserRequest) (*QueryGetWorldIdToUserResponse, error)
+	WorldIdToUserAll(context.Context, *QueryAllWorldIdToUserRequest) (*QueryAllWorldIdToUserResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -63,6 +115,18 @@ type UnimplementedQueryServer struct {
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (UnimplementedQueryServer) AccountToUser(context.Context, *QueryGetAccountToUserRequest) (*QueryGetAccountToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AccountToUser not implemented")
+}
+func (UnimplementedQueryServer) AccountToUserAll(context.Context, *QueryAllAccountToUserRequest) (*QueryAllAccountToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AccountToUserAll not implemented")
+}
+func (UnimplementedQueryServer) WorldIdToUser(context.Context, *QueryGetWorldIdToUserRequest) (*QueryGetWorldIdToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WorldIdToUser not implemented")
+}
+func (UnimplementedQueryServer) WorldIdToUserAll(context.Context, *QueryAllWorldIdToUserRequest) (*QueryAllWorldIdToUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WorldIdToUserAll not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -95,6 +159,78 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_AccountToUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetAccountToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AccountToUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AccountToUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AccountToUser(ctx, req.(*QueryGetAccountToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_AccountToUserAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllAccountToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).AccountToUserAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_AccountToUserAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).AccountToUserAll(ctx, req.(*QueryAllAccountToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_WorldIdToUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetWorldIdToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).WorldIdToUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_WorldIdToUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).WorldIdToUser(ctx, req.(*QueryGetWorldIdToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_WorldIdToUserAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllWorldIdToUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).WorldIdToUserAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_WorldIdToUserAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).WorldIdToUserAll(ctx, req.(*QueryAllWorldIdToUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -105,6 +241,22 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "AccountToUser",
+			Handler:    _Query_AccountToUser_Handler,
+		},
+		{
+			MethodName: "AccountToUserAll",
+			Handler:    _Query_AccountToUserAll_Handler,
+		},
+		{
+			MethodName: "WorldIdToUser",
+			Handler:    _Query_WorldIdToUser_Handler,
+		},
+		{
+			MethodName: "WorldIdToUserAll",
+			Handler:    _Query_WorldIdToUserAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
